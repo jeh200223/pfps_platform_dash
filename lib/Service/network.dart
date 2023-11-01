@@ -50,29 +50,33 @@ class Insert {
       throw Exception('데이터를 보내지 못했습니다.');
     }
   }
-
-  Future<List<Map<String, dynamic>>> insertData_auto(
-      String manual, String barrierControl) async {
-    String menu = manual;
-
+  Future<dynamic> insertWarning(String deviceid, String manual, String barrierControl, String warning) async {
     final Uri uri = Uri.parse(
-        'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=insert&manual=$manual&barrier_control=$barrierControl');
-    print(uri);
+      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=insert&manual=$manual&barrier_control=$barrierControl',
+    );
+
+    final Map<String, dynamic> data = {
+      'deviceid': deviceid,
+      'manual': manual,
+      'barrier_control': barrierControl,
+      'warning': warning,
+    };
+
     final response = await http.post(
       uri,
       headers: <String, String>{
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: <String, dynamic>{
-        "manual": menu,
-        "barrier_control": barrierControl,
-      },
+      body: jsonEncode(data),
     );
 
     if (response.statusCode == 200) {
-      final List<Map<String, dynamic>> data =
-      List<Map<String, dynamic>>.from(json.decode(response.body));
-      return data;
+      try {
+        final jsonData = json.decode(response.body);
+        // JSON 파싱 및 데이터 처리
+      } catch (e) {
+        print('서버 응답은 유효한 JSON 형식이 아닙니다.');
+      }
     } else {
       throw Exception('데이터를 보내지 못했습니다.');
     }

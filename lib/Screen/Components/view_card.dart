@@ -1,16 +1,26 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pfps_platform/Service/network.dart';
 
 class ViewCard extends StatelessWidget {
   final String deviceid;
   final double watervalue;
+  final String manual;
+  final String barrier_control;
+  final String warning;
+
   ViewCard({
     required this.deviceid,
     required this.watervalue,
+    required this.manual,
+    required this.barrier_control,
+    required this.warning,
   });
 
   @override
   Widget build(BuildContext context) {
+    final Insert networking = Insert();
+
     return Card(
       child: Column(
         children: [
@@ -82,11 +92,44 @@ class ViewCard extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
               flex: 1,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center ,
                 children: [
-
+                  OutlinedButton(
+                    child: Text("SW",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: (){
+                      deviceid;
+                      manual;
+                      barrier_control;
+                      warning == "0" ? "1" : "0";
+                      networking.insertWarning(deviceid, manual, barrier_control, warning);
+                    },
+                    style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0), // 원하는 반지름 설정
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    child: Container(
+                      width: 70,
+                      height: 50,
+                      margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.black
+                          ),
+                          color: Colors.blue),
+                    ),
+                  )
                 ],
               ),
           ),

@@ -18,14 +18,16 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Map<String, dynamic>> _devicedataList1 = [];
+  List<Map<String, dynamic>> _barrierList1 = [];
   late Timer _timer;
 
   void getDatas() async {
     try {
       List<Map<String, dynamic>> devicedataList1 = await NetworkSendData().getAllData();
-
+      List<Map<String, dynamic>> barrierList1 = await NetworkSendData().getBarrierData();
       setState(() {
         _devicedataList1 = devicedataList1;
+        _barrierList1 = barrierList1;
       });
     } catch (e) {
       print(e);
@@ -74,6 +76,9 @@ class _MainScreenState extends State<MainScreen> {
                           SizedBox(width: 200, child: ViewCard(
                             deviceid: "${_devicedataList1[i]["device_id"]}",
                             watervalue: _parseDouble(_devicedataList1[i]["water_value"]),
+                            manual: "${_barrierList1[i]["manual"]}",
+                            barrier_control: "${_barrierList1[i]["barrier_control"]}",
+                            warning: "${_barrierList1[i]["warning"]}",
                           ),
                         ),
                       ],
@@ -221,6 +226,17 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+}
+
+ int _parseInt(String value) {
+   try {
+     int parsedValue = int.parse(value);
+     // toFixedString을 사용하여 원하는 소수점 자릿수까지 출력
+     return parsedValue;
+   } catch (e) {
+     // 파싱에 실패한 경우 0.0을 반환하거나 다른 기본값을 사용할 수 있습니다.
+     return 0; // 또는 다른 기본값
+   }
 }
 
  double _parseDouble(String value) {
