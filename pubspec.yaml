@@ -30,6 +30,9 @@ environment:
 dependencies:
   timer_builder: ^2.0.0
   intl: ^0.18.1
+  http: ^1.1.0
+  html: ^0.15.4
+  json_annotation: ^4.8.1
   flutter:
     sdk: flutter
 

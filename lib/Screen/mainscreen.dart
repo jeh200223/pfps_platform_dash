@@ -18,16 +18,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Map<String, dynamic>> _devicedataList1 = [];
-  List<Map<String, dynamic>> _barrierList1 = [];
   late Timer _timer;
 
   void getDatas() async {
     try {
       List<Map<String, dynamic>> devicedataList1 = await NetworkSendData().getAllData();
-      List<Map<String, dynamic>> barrierList1 = await NetworkSendData().getBarrierData();
       setState(() {
         _devicedataList1 = devicedataList1;
-        _barrierList1 = barrierList1;
       });
     } catch (e) {
       print(e);
@@ -76,9 +73,7 @@ class _MainScreenState extends State<MainScreen> {
                           SizedBox(width: 200, child: ViewCard(
                             deviceid: "${_devicedataList1[i]["device_id"]}",
                             watervalue: _parseDouble(_devicedataList1[i]["water_value"]),
-                            manual: "${_barrierList1[i]["manual"]}",
-                            barrier_control: "${_barrierList1[i]["barrier_control"]}",
-                            warning: "${_barrierList1[i]["warning"]}",
+                            barriervalue: "${_devicedataList1[i]["barrier_value"]}",
                           ),
                         ),
                       ],
@@ -197,9 +192,8 @@ class _MainScreenState extends State<MainScreen> {
                             child: ListView.builder(
                               itemCount: _devicedataList1.length,
                               itemBuilder: (context, index) => ListTile(
-                                title:
-                                    _devicedataList1.isNotEmpty?
-                                Row(
+                                title: _devicedataList1.isNotEmpty
+                                    ? Row(
                                   children: [
                                     Expanded(child: Text("${_devicedataList1[index]["device_id"]}")),
                                     Expanded(child: Text("${_devicedataList1[index]["address"]}")),
@@ -207,10 +201,14 @@ class _MainScreenState extends State<MainScreen> {
                                     Expanded(child: Text("${_devicedataList1[index]["temp_value"]}")),
                                     Expanded(child: Text("${_devicedataList1[index]["humi_value"]}")),
                                     Expanded(child: Text("data$index")),
-                                    Expanded(child: Text("${_devicedataList1[index]["barrier_value"] == "0" ? "꺼짐" : "켜짐"}")),
+                                    Expanded(child: Text(
+                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.7 ? "평시" :
+                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) < 0.7 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.4 ? "주의" :
+                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) < 0.4 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.0 ? "비상" : "비상")),
                                     Expanded(child: Text("${_devicedataList1[index]["barrier_value"] == "0" ? "꺼짐" : "켜짐"}")),
                                   ],
-                                ): Row(),
+                                )
+                                    : Row(),
                               ),
                             ),
                           ),
@@ -256,4 +254,21 @@ TextStyle listViewTitleStyle() {
     fontSize: 15.2,
     fontWeight: FontWeight.bold,
   );
+}
+double waterValueConvert(double watervalue) {
+  double minPercentage = 100.0; // 최소 퍼센트
+  double maxPercentage = 0.0; // 최대 퍼센트
+
+  double minValue = 0.0; // 최소 값
+  double maxValue = 1.0; // 최대 값
+
+  double percentage = watervalue; // 변환할 퍼센트 값
+
+// 퍼센트 값을 최소 값과 최대 값 사이로 변환
+  double animatedHeight = (maxValue - minValue) *
+      (percentage - minPercentage) /
+      (maxPercentage - minPercentage) +
+      minValue;
+  print(animatedHeight);
+  return animatedHeight;
 }

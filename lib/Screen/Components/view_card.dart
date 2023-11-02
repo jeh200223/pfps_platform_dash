@@ -5,22 +5,17 @@ import 'package:pfps_platform/Service/network.dart';
 class ViewCard extends StatelessWidget {
   final String deviceid;
   final double watervalue;
-  final String manual;
-  final String barrier_control;
-  final String warning;
-
+  final String barriervalue;
   ViewCard({
     required this.deviceid,
     required this.watervalue,
-    required this.manual,
-    required this.barrier_control,
-    required this.warning,
+    required this.barriervalue,
   });
 
   @override
   Widget build(BuildContext context) {
     final Insert networking = Insert();
-
+    String warning = "0";
     return Card(
       child: Column(
         children: [
@@ -75,12 +70,12 @@ class ViewCard extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: const [0.1, 0.7],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: [waterValueConvert(watervalue), 0.1],
                         colors: [
-                          Colors.red.shade300,
                           Colors.blue.shade300,
+                          Colors.white,
                         ],
                       ),
                       border: Border.all(
@@ -102,11 +97,9 @@ class ViewCard extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: (){
-                      deviceid;
-                      manual;
-                      barrier_control;
-                      warning == "0" ? "1" : "0";
-                      networking.insertWarning(deviceid, manual, barrier_control, warning);
+
+                      warning == "1";
+                      networking.insertWarning(warning);
                     },
                     style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -127,7 +120,9 @@ class ViewCard extends StatelessWidget {
                             width: 1,
                             color: Colors.black
                           ),
-                          color: Colors.blue),
+                          color:
+                          barriervalue == "0" ? Colors.blue : Colors.red,
+                      ),
                     ),
                   )
                 ],
@@ -137,4 +132,21 @@ class ViewCard extends StatelessWidget {
       ),
     );
   }
+}
+double waterValueConvert(double watervalue) {
+  double minPercentage = 100.0; // 최소 퍼센트
+  double maxPercentage = 0.0; // 최대 퍼센트
+
+  double minValue = 0.0; // 최소 값
+  double maxValue = 1.0; // 최대 값
+
+  double percentage = watervalue; // 변환할 퍼센트 값
+
+// 퍼센트 값을 최소 값과 최대 값 사이로 변환
+  double animatedHeight = (maxValue - minValue) *
+      (percentage - minPercentage) /
+      (maxPercentage - minPercentage) +
+      minValue;
+  print(animatedHeight);
+  return animatedHeight;
 }

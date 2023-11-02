@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as html;
 
 class NetworkSendData {
   Future<List<Map<String, dynamic>>> getAllData() async {
@@ -7,20 +8,21 @@ class NetworkSendData {
         Uri.parse('http://capstone.dothome.co.kr/sensor/wemos_app.php?mode=select'));
 
     if (response.statusCode == 200) {
-      return List<Map<String, dynamic>>.from(jsonDecode(response.body));
+      try {
+        final document = html.parse(response.body);
+        final bodyElement = document.body;
+        final jsonData = bodyElement?.text; // Null 체크 추가
+        if (jsonData != null) {
+          // JSON parsing
+          return List<Map<String, dynamic>>.from(jsonDecode(jsonData));
+        } else {
+          throw Exception('서버 응답에서 JSON 데이터를 가져올 수 없습니다.');
+        }
+      } catch (e) {
+        throw Exception('서버 응답에서 JSON 파싱 실패: $e');
+      }
     } else {
-      throw Exception('데이터를 받아오지 못했습니다.');
-    }
-  }
-
-  Future<List<Map<String, dynamic>>> getBarrierData() async {
-    final response = await http.get(
-        Uri.parse('http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=select'));
-
-    if (response.statusCode == 200) {
-      return List<Map<String, dynamic>>.from(jsonDecode(response.body));
-    } else {
-      throw Exception('데이터를 받아오지 못했습니다.');
+      throw Exception('서버에서 데이터를 가져오지 못했습니다. HTTP 상태 코드: ${response.statusCode}');
     }
   }
 }
@@ -50,33 +52,26 @@ class Insert {
       throw Exception('데이터를 보내지 못했습니다.');
     }
   }
-  Future<dynamic> insertWarning(String deviceid, String manual, String barrierControl, String warning) async {
+  Future<void> insertWarning(String warning) async {
     final Uri uri = Uri.parse(
-      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=insert&manual=$manual&barrier_control=$barrierControl',
+      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=warning',
     );
 
     final Map<String, dynamic> data = {
-      'deviceid': deviceid,
-      'manual': manual,
-      'barrier_control': barrierControl,
       'warning': warning,
     };
 
     final response = await http.post(
       uri,
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: jsonEncode(data),
     );
 
     if (response.statusCode == 200) {
-      try {
-        final jsonData = json.decode(response.body);
-        // JSON 파싱 및 데이터 처리
-      } catch (e) {
-        print('서버 응답은 유효한 JSON 형식이 아닙니다.');
-      }
+      // HTTP 응답은 성공
+      // JSON 파싱 및 데이터 처리를 여기에 추가할 수 있습니다.
     } else {
       throw Exception('데이터를 보내지 못했습니다.');
     }
