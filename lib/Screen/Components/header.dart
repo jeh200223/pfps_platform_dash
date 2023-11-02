@@ -17,6 +17,8 @@ class _HeaderState extends State<Header> {
         Expanded(
           flex: 1,
           child: Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.fromLTRB(0, 6, 0, 4),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
@@ -41,7 +43,8 @@ class _HeaderState extends State<Header> {
       ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.fromLTRB(0, 6, 0, 4),
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.fromLTRB(0, 12, 0, 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
@@ -67,8 +70,8 @@ class _HeaderState extends State<Header> {
                   );
                 }),
           ),
-        ),)
-
+        ),
+        ),
       ],
     );
   }

@@ -50,6 +50,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 90,
         centerTitle: false,
         title: const Header(),
         backgroundColor: Colors.transparent,
@@ -64,8 +65,13 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 Expanded(
                   child: Container(
+                    margin: EdgeInsets.all(10),
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
+                        BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: Colors.black)
+                        ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -90,8 +96,10 @@ class _MainScreenState extends State<MainScreen> {
                 Expanded(
                   flex: 1,
                   child: Container(
+                    margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: FlutterMap(
                       options: const MapOptions(
@@ -122,8 +130,9 @@ class _MainScreenState extends State<MainScreen> {
                 Expanded(
                   flex: 2,
                   child: Container(
+                    margin: EdgeInsets.all(10),
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
+                        BoxDecoration(border: Border.all(color: Colors.black),borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
                         Row(
