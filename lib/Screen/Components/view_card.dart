@@ -98,9 +98,50 @@ class ViewCard extends StatelessWidget {
                     child: Text("SW",
                       style: TextStyle(fontSize: 20),
                     ),
-                    onPressed: (){
-                      warning == "1";
-                      networking.insertWarning(warning);
+                    onPressed: () async {
+                      try {
+                        // warning 변수를 "1"로 설정
+                        warning = "1";
+                        // 경보 전송
+                        await networking.insertWarning(warning);
+                        // 경보가 성공적으로 전송되었습니다. 메시지를 다이얼로그로 표시
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("알림"),
+                              content: Text("경보가 성공적으로 전송되었습니다."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("확인"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } catch (e) {
+                        // 에러 발생 시 에러 메시지를 다이얼로그로 표시
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("에러"),
+                              content: Text("경보 전송 중 오류가 발생했습니다: $e"),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("확인"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

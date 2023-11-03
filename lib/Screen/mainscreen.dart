@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     getDatas();
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (Timer t) {
+    _timer = Timer.periodic(const Duration(milliseconds: 400), (Timer t) {
       getDatas();
     });
   }
