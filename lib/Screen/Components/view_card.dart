@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:pfps_platform/Service/network.dart';
 
@@ -6,6 +5,8 @@ class ViewCard extends StatelessWidget {
   final String deviceid;
   final double watervalue;
   final String barriervalue;
+
+  // 수정된 생성자. deviceid를 인자로 받도록 함.
   ViewCard({
     required this.deviceid,
     required this.watervalue,
@@ -15,7 +16,6 @@ class ViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Insert networking = Insert();
-    String warning = "0";
     return Card(
       child: Column(
         children: [
@@ -45,9 +45,11 @@ class ViewCard extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: Text(
-                                "${watervalue.toStringAsFixed(1)}",
+                              "${watervalue.toStringAsFixed(1)}",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -57,7 +59,9 @@ class ViewCard extends StatelessWidget {
                           child: Text(
                             'mm',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                             textAlign: TextAlign.start,
                           ),
                         ),
@@ -88,65 +92,23 @@ class ViewCard extends StatelessWidget {
             ),
           ),
           Expanded(
-              flex: 1,
-              child: Container(
-                padding:EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: Row(
-                mainAxisAlignment: MainAxisAlignment.center ,
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   OutlinedButton(
-                    child: Text("SW",
+                    child: Text("경고",
                       style: TextStyle(fontSize: 20),
                     ),
-                    onPressed: () async {
-                      try {
-                        // warning 변수를 "1"로 설정
-                        warning = "1";
-                        // 경보 전송
-                        await networking.insertWarning(warning);
-                        // 경보가 성공적으로 전송되었습니다. 메시지를 다이얼로그로 표시
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("알림"),
-                              content: Text("경보가 성공적으로 전송되었습니다."),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text("확인"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      } catch (e) {
-                        // 에러 발생 시 에러 메시지를 다이얼로그로 표시
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("에러"),
-                              content: Text("경보 전송 중 오류가 발생했습니다: $e"),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text("확인"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
+                    onPressed: () {
+                      networking.updateWarning("$deviceid");
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0), // 원하는 반지름 설정
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
                     ),
@@ -168,27 +130,29 @@ class ViewCard extends StatelessWidget {
                     ),
                   )
                 ],
-              ),),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
-}
-double waterValueConvert(double watervalue) {
-  double minPercentage = 0.0; // 최소 퍼센트
-  double maxPercentage = 15.0; // 최대 퍼센트
 
-  double minValue = 0.0; // 최소 값
-  double maxValue = 1.0; // 최대 값
+  double waterValueConvert(double watervalue) {
+    double minPercentage = 0.0; // 최소 퍼센트
+    double maxPercentage = 15.0; // 최대 퍼센트
 
-  double percentage = watervalue; // 변환할 퍼센트 값
+    double minValue = 0.0; // 최소 값
+    double maxValue = 1.0; // 최대 값
+
+    double percentage = watervalue; // 변환할 퍼센트 값
 
 // 퍼센트 값을 최소 값과 최대 값 사이로 변환
-  double animatedHeight = (maxValue - minValue) *
-      (percentage - minPercentage) /
-      (maxPercentage - minPercentage) +
-      minValue;
-  print(animatedHeight);
-  return animatedHeight <= 100 ? animatedHeight : 1.0;
+    double animatedHeight = (maxValue - minValue) *
+        (percentage - minPercentage) /
+        (maxPercentage - minPercentage) +
+        minValue;
+    print(animatedHeight);
+    return animatedHeight;
+  }
 }

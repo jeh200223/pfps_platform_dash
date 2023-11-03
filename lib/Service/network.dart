@@ -52,13 +52,14 @@ class Insert {
       throw Exception('데이터를 보내지 못했습니다.');
     }
   }
-  Future<void> insertWarning(String warning) async {
+  Future<void> updateWarning(String device_id) async {
     final Uri uri = Uri.parse(
-      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=warning',
+      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=warning&device_id=$device_id',
     );
 
+    print(uri);
     final Map<String, dynamic> data = {
-      'warning': warning,
+      'device_id': device_id,
     };
 
     final response = await http.post(
@@ -70,10 +71,10 @@ class Insert {
     );
 
     if (response.statusCode == 200) {
-      // HTTP 응답은 성공
-      // JSON 파싱 및 데이터 처리를 여기에 추가할 수 있습니다.
+      print("업데이트 성공");// 업데이트 성공
+      // 업데이트 후에 필요한 추가 작업을 수행할 수 있습니다.
     } else {
-      throw Exception('데이터를 보내지 못했습니다.');
+      throw Exception('데이터를 업데이트하지 못했습니다.');
     }
   }
 }
