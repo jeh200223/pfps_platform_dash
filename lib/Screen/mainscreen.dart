@@ -22,7 +22,8 @@ class _MainScreenState extends State<MainScreen> {
 
   void getDatas() async {
     try {
-      List<Map<String, dynamic>> devicedataList1 = await NetworkSendData().getAllData();
+      List<Map<String, dynamic>> devicedataList1 =
+          await NetworkSendData().getAllData();
       setState(() {
         _devicedataList1 = devicedataList1;
       });
@@ -66,22 +67,23 @@ class _MainScreenState extends State<MainScreen> {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.all(10),
-                    decoration:
-                        BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: Colors.black)
-                        ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         for (int i = 0; i < _devicedataList1.length; i++)
-                          SizedBox(width: 200, child: ViewCard(
-                            deviceid: "${_devicedataList1[i]["device_id"]}",
-                            watervalue: _parseDouble(_devicedataList1[i]["water_value"]),
-                            barriervalue: "${_devicedataList1[i]["barrier_value"]}",
+                          SizedBox(
+                            width: 200,
+                            child: ViewCard(
+                              deviceid: "${_devicedataList1[i]["device_id"]}",
+                              watervalue: _parseDouble(
+                                  _devicedataList1[i]["water_value"]),
+                              barriervalue:
+                                  "${_devicedataList1[i]["barrier_value"]}",
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -103,8 +105,8 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     child: FlutterMap(
                       options: const MapOptions(
-                        center: LatLng(37.508883, 127.100015),
-                        zoom: 15,
+                        center: LatLng(37.636665, 127.216530),
+                        zoom: 11.5,
                       ),
                       children: [
                         TileLayer(
@@ -113,14 +115,51 @@ class _MainScreenState extends State<MainScreen> {
                           userAgentPackageName:
                               'com.ctrls.ipms.parkshare.parkshare',
                         ),
-                        const MarkerLayer(markers: [
+                        MarkerLayer(markers: [
                           Marker(
-                            point: LatLng(37.508883, 127.100015),
-                            child: Icon(Icons.yard),
+                            point: LatLng(37.735244, 127.209749),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D001",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
                           Marker(
-                            point: LatLng(37.518783, 127.100015),
-                            child: Icon(Icons.yard),
+                            point: LatLng(37.656560, 127.179580),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D002",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.642454, 127.229575),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D003",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
                         ])
                       ],
@@ -131,93 +170,216 @@ class _MainScreenState extends State<MainScreen> {
                   flex: 2,
                   child: Container(
                     margin: EdgeInsets.all(10),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black),borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1.0),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                '번호',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                            bottom: BorderSide(width: 1),
+                          )),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(right: BorderSide(width: 1)),
+                                  ),
+                                  child: Text(
+                                    '번호',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '위치이름',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '위치',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '수위',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '수위',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '온도',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '온도',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '습도',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '습도',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'IP주소',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '경고상태',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '상태',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border(right: BorderSide(width: 1))),
+                                  child: Text(
+                                    '조치',
+                                    style: listViewTitleStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '조치',
-                                style: listViewTitleStyle(),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         Expanded(
                           flex: 4,
                           child: Container(
                             child: ListView.builder(
                               itemCount: _devicedataList1.length,
-                              itemBuilder: (context, index) => ListTile(
-                                title: _devicedataList1.isNotEmpty
-                                    ? Row(
+                              itemBuilder: (context, index) => Container(
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 1)),
+                                ),
+                                child: Column(
                                   children: [
-                                    Expanded(child: Text("${_devicedataList1[index]["device_id"]}")),
-                                    Expanded(child: Text("${_devicedataList1[index]["address"]}")),
-                                    Expanded(child: Text("${_devicedataList1[index]["water_value"]}")),
-                                    Expanded(child: Text("${_devicedataList1[index]["temp_value"]}")),
-                                    Expanded(child: Text("${_devicedataList1[index]["humi_value"]}")),
-                                    Expanded(child: Text("data$index")),
-                                    Expanded(child: Text(
-                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.7 ? "평시" :
-                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) < 0.7 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.4 ? "주의" :
-                                    waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) < 0.4 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.0 ? "비상" : "비상")),
-                                    Expanded(child: Text("${_devicedataList1[index]["barrier_value"] == "0" ? "꺼짐" : "켜짐"}")),
+                                    _devicedataList1.isNotEmpty
+                                        ? Row(
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["device_id"]}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["address"]}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["water_value"]}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["temp_value"]}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["humi_value"]}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 1.0 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) > 0.8 ? "비상" :
+                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 0.8 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) > 0.4 ? "주의" :
+                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 0.4 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.0 ? "평시" : "평시",
+                                                      textAlign: TextAlign.center),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                        right: BorderSide(
+                                                            width: 1)),
+                                                  ),
+                                                  child: Text(
+                                                      "${_devicedataList1[index]["barrier_value"] == "0" ? "OFF" : "ON"}",
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Row(),
                                   ],
-                                )
-                                    : Row(),
+                                ),
                               ),
                             ),
                           ),
@@ -235,26 +397,26 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
- int _parseInt(String value) {
-   try {
-     int parsedValue = int.parse(value);
-     // toFixedString을 사용하여 원하는 소수점 자릿수까지 출력
-     return parsedValue;
-   } catch (e) {
-     // 파싱에 실패한 경우 0.0을 반환하거나 다른 기본값을 사용할 수 있습니다.
-     return 0; // 또는 다른 기본값
-   }
+int _parseInt(String value) {
+  try {
+    int parsedValue = int.parse(value);
+    // toFixedString을 사용하여 원하는 소수점 자릿수까지 출력
+    return parsedValue;
+  } catch (e) {
+    // 파싱에 실패한 경우 0.0을 반환하거나 다른 기본값을 사용할 수 있습니다.
+    return 0; // 또는 다른 기본값
+  }
 }
 
- double _parseDouble(String value) {
-   try {
-     double parsedValue = double.parse(value);
-     // toFixedString을 사용하여 원하는 소수점 자릿수까지 출력
-     return double.parse(parsedValue.toStringAsFixed(1));
-   } catch (e) {
-     // 파싱에 실패한 경우 0.0을 반환하거나 다른 기본값을 사용할 수 있습니다.
-     return 0.0; // 또는 다른 기본값
-   }
+double _parseDouble(String value) {
+  try {
+    double parsedValue = double.parse(value);
+    // toFixedString을 사용하여 원하는 소수점 자릿수까지 출력
+    return double.parse(parsedValue.toStringAsFixed(1));
+  } catch (e) {
+    // 파싱에 실패한 경우 0.0을 반환하거나 다른 기본값을 사용할 수 있습니다.
+    return 0.0; // 또는 다른 기본값
+  }
 }
 
 TextStyle listViewTitleStyle() {
@@ -264,6 +426,7 @@ TextStyle listViewTitleStyle() {
     fontWeight: FontWeight.bold,
   );
 }
+
 double waterValueConvert(double watervalue) {
   double minPercentage = 100.0; // 최소 퍼센트
   double maxPercentage = 0.0; // 최대 퍼센트
@@ -275,8 +438,8 @@ double waterValueConvert(double watervalue) {
 
 // 퍼센트 값을 최소 값과 최대 값 사이로 변환
   double animatedHeight = (maxValue - minValue) *
-      (percentage - minPercentage) /
-      (maxPercentage - minPercentage) +
+          (percentage - minPercentage) /
+          (maxPercentage - minPercentage) +
       minValue;
   print(animatedHeight);
   return animatedHeight;

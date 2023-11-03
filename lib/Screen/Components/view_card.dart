@@ -89,7 +89,9 @@ class ViewCard extends StatelessWidget {
           ),
           Expanded(
               flex: 1,
-              child: Row(
+              child: Container(
+                padding:EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: Row(
                 mainAxisAlignment: MainAxisAlignment.center ,
                 children: [
                   OutlinedButton(
@@ -97,14 +99,13 @@ class ViewCard extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: (){
-
                       warning == "1";
                       networking.insertWarning(warning);
                     },
                     style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0), // 원하는 반지름 설정
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0), // 원하는 반지름 설정
                         ),
                       ),
                     ),
@@ -115,18 +116,18 @@ class ViewCard extends StatelessWidget {
                       height: 50,
                       margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
                             width: 1,
                             color: Colors.black
-                          ),
-                          color:
-                          barriervalue == "0" ? Colors.blue : Colors.red,
+                        ),
+                        color:
+                        barriervalue == "0" ? Colors.blue : Colors.red,
                       ),
                     ),
                   )
                 ],
-              ),
+              ),),
           ),
         ],
       ),
