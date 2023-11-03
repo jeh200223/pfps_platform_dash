@@ -356,9 +356,9 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 1.0 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) > 0.8 ? "비상" :
-                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 0.8 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) > 0.4 ? "주의" :
-                                                      waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) <= 0.4 && waterValueConvert(_parseDouble(_devicedataList1[index]["water_value"])) >= 0.0 ? "평시" : "평시",
+                                                      _parseDouble(_devicedataList1[index]["water_value"]) > 15.0 ? "평시" :
+                                                      _parseDouble(_devicedataList1[index]["water_value"]) <= 15.0 && _parseDouble(_devicedataList1[index]["water_value"]) > 10.0 ? "주의" :
+                                                      _parseDouble(_devicedataList1[index]["water_value"]) <= 10.0 && _parseDouble(_devicedataList1[index]["water_value"]) >= 0.0 ? "비상" : "오류",
                                                       textAlign: TextAlign.center),
                                                 ),
                                               ),
@@ -428,8 +428,8 @@ TextStyle listViewTitleStyle() {
 }
 
 double waterValueConvert(double watervalue) {
-  double minPercentage = 100.0; // 최소 퍼센트
-  double maxPercentage = 0.0; // 최대 퍼센트
+  double minPercentage = 0.0; // 최소 퍼센트
+  double maxPercentage = 15.0; // 최대 퍼센트
 
   double minValue = 0.0; // 최소 값
   double maxValue = 1.0; // 최대 값

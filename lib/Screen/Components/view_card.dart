@@ -70,12 +70,12 @@ class ViewCard extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        stops: [waterValueConvert(watervalue), 0.1],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [waterValueConvert(watervalue), waterValueConvert(watervalue)],
                         colors: [
-                          Colors.blue.shade300,
                           Colors.white,
+                          Colors.blue.shade300,
                         ],
                       ),
                       border: Border.all(
@@ -135,8 +135,8 @@ class ViewCard extends StatelessWidget {
   }
 }
 double waterValueConvert(double watervalue) {
-  double minPercentage = 100.0; // 최소 퍼센트
-  double maxPercentage = 0.0; // 최대 퍼센트
+  double minPercentage = 0.0; // 최소 퍼센트
+  double maxPercentage = 15.0; // 최대 퍼센트
 
   double minValue = 0.0; // 최소 값
   double maxValue = 1.0; // 최대 값
@@ -149,5 +149,5 @@ double waterValueConvert(double watervalue) {
       (maxPercentage - minPercentage) +
       minValue;
   print(animatedHeight);
-  return animatedHeight;
+  return animatedHeight <= 100 ? animatedHeight : 1.0;
 }
