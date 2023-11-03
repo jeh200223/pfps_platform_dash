@@ -132,7 +132,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           Marker(
-                            point: LatLng(37.656560, 127.179580),
+                            point: LatLng(37.660250, 127.177316),
                             width: 110,
                             height: 70,
                             child: Column(
@@ -147,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           Marker(
-                            point: LatLng(37.642454, 127.229575),
+                            point: LatLng(37.661006, 127.247171),
                             width: 110,
                             height: 70,
                             child: Column(
