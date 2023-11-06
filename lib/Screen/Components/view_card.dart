@@ -17,6 +17,8 @@ class ViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final Insert networking = Insert();
     return Card(
+      color: Color(0XFFFAFAFA),
+      shape: Border.all(width: 1),
       child: Column(
         children: [
           Expanded(
@@ -32,7 +34,7 @@ class ViewCard extends StatelessWidget {
                       Expanded(
                         child: SizedBox(
                           child: Align(
-                            alignment: Alignment.topLeft,
+                            alignment: Alignment.topCenter,
                             child: Text(
                               "$deviceid",
                               style: TextStyle(fontSize: 24),
@@ -43,21 +45,22 @@ class ViewCard extends StatelessWidget {
                       Expanded(
                         child: SizedBox(
                           child: Align(
-                            alignment: Alignment.bottomCenter,
+                            alignment: Alignment.topCenter,
                             child: Text(
-                              "${watervalue.toStringAsFixed(1)}",
+                              "${watervalue.toStringAsFixed(1)} Cm",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 22,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Expanded(
+                      /*Expanded(
                         child: SizedBox(
                           child: Text(
-                            'Cm',
+                            'cm',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -65,12 +68,13 @@ class ViewCard extends StatelessWidget {
                             textAlign: TextAlign.start,
                           ),
                         ),
-                      )
+                      )*/
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 60,
+                Container(
+                  width: 80,
+                  padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -100,7 +104,10 @@ class ViewCard extends StatelessWidget {
                 children: [
                   OutlinedButton(
                     child: Text("경고",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black
+                      ),
                     ),
                     onPressed: () {
                       networking.updateWarning("$deviceid").then((success) {
@@ -124,6 +131,11 @@ class ViewCard extends StatelessWidget {
                       });
                     },
                     style: ButtonStyle(
+                      side: MaterialStateProperty.all(
+                          BorderSide(
+                              width: 1,
+                              color: Colors.black)
+                      ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),

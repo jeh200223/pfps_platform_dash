@@ -191,6 +191,7 @@ class _MainScreenState extends State<MainScreen> {
                                     '번호',
                                     style: listViewTitleStyle(),
                                     textAlign: TextAlign.center,
+
                                   ),
                                 ),
                               ),
@@ -293,7 +294,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["device_id"]}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -306,7 +307,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["address"]}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -319,7 +320,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["water_value"]}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -332,7 +333,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["temp_value"]}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -345,7 +346,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["humi_value"]}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -359,7 +360,7 @@ class _MainScreenState extends State<MainScreen> {
                                                       _parseDouble(_devicedataList1[index]["water_value"]) > 15.0 ? "평시" :
                                                       _parseDouble(_devicedataList1[index]["water_value"]) <= 15.0 && _parseDouble(_devicedataList1[index]["water_value"]) > 10.0 ? "주의" :
                                                       _parseDouble(_devicedataList1[index]["water_value"]) <= 10.0 && _parseDouble(_devicedataList1[index]["water_value"]) >= 0.0 ? "비상" : "오류",
-                                                      textAlign: TextAlign.center),
+                                                      textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                               Expanded(
@@ -372,7 +373,7 @@ class _MainScreenState extends State<MainScreen> {
                                                   child: Text(
                                                       "${_devicedataList1[index]["barrier_value"] == "0" ? "OFF" : "ON"}",
                                                       textAlign:
-                                                          TextAlign.center),
+                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
                                               ),
                                             ],
@@ -422,7 +423,7 @@ double _parseDouble(String value) {
 TextStyle listViewTitleStyle() {
   return const TextStyle(
     height: 3.0,
-    fontSize: 15.2,
+    fontSize: 22.2,
     fontWeight: FontWeight.bold,
   );
 }
