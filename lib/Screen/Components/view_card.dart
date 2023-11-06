@@ -103,7 +103,25 @@ class ViewCard extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      networking.updateWarning("$deviceid");
+                      networking.updateWarning("$deviceid").then((success) {
+                        if (success) {
+                          // 경고가 성공적으로 발송되었다고 출력
+                          final scaffold = ScaffoldMessenger.of(context);
+                          scaffold.showSnackBar(
+                            SnackBar(
+                              content: Text("경고가 성공적으로 발송되었습니다."),
+                            ),
+                          );
+                        } else {
+                          // 경고 발송 실패 시 메시지 출력
+                          final scaffold = ScaffoldMessenger.of(context);
+                          scaffold.showSnackBar(
+                            SnackBar(
+                              content: Text("경고 발송에 실패했습니다."),
+                            ),
+                          );
+                        }
+                      });
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

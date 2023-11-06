@@ -52,7 +52,7 @@ class Insert {
       throw Exception('데이터를 보내지 못했습니다.');
     }
   }
-  Future<void> updateWarning(String device_id) async {
+  Future<bool> updateWarning(String device_id) async {
     final Uri uri = Uri.parse(
       'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=warning&device_id=$device_id',
     );
@@ -71,8 +71,8 @@ class Insert {
     );
 
     if (response.statusCode == 200) {
-      print("업데이트 성공");// 업데이트 성공
-      // 업데이트 후에 필요한 추가 작업을 수행할 수 있습니다.
+      print("업데이트 성공");
+      return true; // 업데이트 성공
     } else {
       throw Exception('데이터를 업데이트하지 못했습니다.');
     }

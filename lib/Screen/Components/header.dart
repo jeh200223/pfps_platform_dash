@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  const Header({Key? key}) : super(key: key);
 
   @override
   _HeaderState createState() => _HeaderState();
@@ -11,7 +11,7 @@ class Header extends StatefulWidget {
 
 class _HeaderState extends State<Header> {
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -19,16 +19,14 @@ class _HeaderState extends State<Header> {
           child: Container(
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.fromLTRB(0, 6, 0, 4),
-          decoration: BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 width: 2,
-                  style: BorderStyle.solid,
-                  color: Colors.black
-              )
-          ),
-          child: const Expanded(
-            flex: 1,
+                style: BorderStyle.solid,
+                color: Colors.black,
+              ),
+            ),
             child: Text(
               "공공시설 수해 방지 플랫폼",
               style: TextStyle(
@@ -40,7 +38,6 @@ class _HeaderState extends State<Header> {
             ),
           ),
         ),
-      ),
         Expanded(
           child: Container(
             margin: EdgeInsets.all(10),
@@ -50,27 +47,25 @@ class _HeaderState extends State<Header> {
               border: Border.all(
                 width: 2,
                 style: BorderStyle.solid,
-                color: Colors.black
-              )
+                color: Colors.black,
+              ),
             ),
-            child: Expanded(
-            flex: 1,
             child: TimerBuilder.periodic(const Duration(seconds: 1),
-                builder: (context) {
-                  // 1초마다 화면을 다시 그리고 현재 시간을 표시
-                  return Text(
-                    DateFormat('yyy-MM-dd a hh:mm ss')
-                        .format(DateTime.now()), // 현재 시간을 HH:mm:ss 형식으로 표시
-                    style: const TextStyle(
-                      fontSize: 40,
-                      color: Colors.black,
-                      decoration: TextDecoration.none,
-                    ),
-                    textAlign: TextAlign.center,
-                  );
-                }),
+              builder: (context) {
+                // 1초마다 화면을 다시 그리고 현재 시간을 표시
+                return Text(
+                  DateFormat('yyyy-MM-dd a hh:mm:ss')
+                      .format(DateTime.now()), // 현재 시간을 HH:mm:ss 형식으로 표시
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.black,
+                    decoration: TextDecoration.none,
+                  ),
+                  textAlign: TextAlign.center,
+                );
+              },
+            ),
           ),
-        ),
         ),
       ],
     );
