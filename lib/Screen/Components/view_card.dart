@@ -57,7 +57,7 @@ class ViewCard extends StatelessWidget {
                       Expanded(
                         child: SizedBox(
                           child: Text(
-                            'mm',
+                            'Cm',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

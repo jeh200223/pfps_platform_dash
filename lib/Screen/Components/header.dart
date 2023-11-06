@@ -41,7 +41,7 @@ class _HeaderState extends State<Header> {
         Expanded(
           child: Container(
             margin: EdgeInsets.all(10),
-            padding: EdgeInsets.fromLTRB(0, 12, 0, 8),
+            padding: EdgeInsets.fromLTRB(20, 12, 0, 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
