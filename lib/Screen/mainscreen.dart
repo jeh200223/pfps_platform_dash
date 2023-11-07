@@ -75,10 +75,11 @@ class _MainScreenState extends State<MainScreen> {
                       children: [
                         for (int i = 0; i < _devicedataList1.length; i++)
                           SizedBox(
-                            width: 200,
+                            width: 180,
                             child: ViewCard(
                               deviceid: "${_devicedataList1[i]["device_id"]}",
-                              watervalue: _parseDouble(
+                              address: "${_devicedataList1[i]["address"]}",
+                              watervalue: 15-_parseDouble(
                                   _devicedataList1[i]["water_value"]),
                               barriervalue:
                                   "${_devicedataList1[i]["barrier_value"]}",
@@ -132,7 +133,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           Marker(
-                            point: LatLng(37.660250, 127.177316),
+                            point: LatLng(37.618957, 126.921186),
                             width: 110,
                             height: 70,
                             child: Column(
@@ -147,7 +148,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           Marker(
-                            point: LatLng(37.661006, 127.247171),
+                            point: LatLng(37.637990, 127.025621),
                             width: 110,
                             height: 70,
                             child: Column(
@@ -156,6 +157,111 @@ class _MainScreenState extends State<MainScreen> {
                                 Icon(Icons.location_on, size: 30, color: Colors.blue),
                                 Text(
                                   "D003",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.720356, 127.203526),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D004",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.586861, 127.208891),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D005",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.667788, 127.116194),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D006",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.651905, 127.178957),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D007",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.652840, 127.311716),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D008",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.631839, 127.150548),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D009",
+                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Marker(
+                            point: LatLng(37.696386, 127.220135),
+                            width: 110,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Text(
+                                  "D010",
                                   style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ],
@@ -188,7 +294,7 @@ class _MainScreenState extends State<MainScreen> {
                                     border: Border(right: BorderSide(width: 1)),
                                   ),
                                   child: Text(
-                                    '번호',
+                                    '관리번호',
                                     style: listViewTitleStyle(),
                                     textAlign: TextAlign.center,
 
@@ -201,7 +307,7 @@ class _MainScreenState extends State<MainScreen> {
                                       border:
                                           Border(right: BorderSide(width: 1))),
                                   child: Text(
-                                    '위치',
+                                    '시설위치',
                                     style: listViewTitleStyle(),
                                     textAlign: TextAlign.center,
                                   ),
@@ -261,7 +367,7 @@ class _MainScreenState extends State<MainScreen> {
                                       border:
                                           Border(right: BorderSide(width: 1))),
                                   child: Text(
-                                    '조치',
+                                    '차단기',
                                     style: listViewTitleStyle(),
                                     textAlign: TextAlign.center,
                                   ),
@@ -318,7 +424,7 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["water_value"]}",
+                                                      "${15-_parseDouble(_devicedataList1[index]["water_value"])}",
                                                       textAlign:
                                                           TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
@@ -372,8 +478,12 @@ class _MainScreenState extends State<MainScreen> {
                                                   ),
                                                   child: Text(
                                                       "${_devicedataList1[index]["barrier_value"] == "0" ? "OFF" : "ON"}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                      textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: _devicedataList1[index]["barrier_value"] == "0" ? Colors.blue : Colors.red,
+                                                      fontSize: 18,
+                                                      fontWeight: FontWeight.bold),
+                                                  ),
                                                 ),
                                               ),
                                             ],

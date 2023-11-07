@@ -3,12 +3,14 @@ import 'package:pfps_platform/Service/network.dart';
 
 class ViewCard extends StatelessWidget {
   final String deviceid;
+  final String address;
   final double watervalue;
   final String barriervalue;
 
   // 수정된 생성자. deviceid를 인자로 받도록 함.
   ViewCard({
     required this.deviceid,
+    required this.address,
     required this.watervalue,
     required this.barriervalue,
   });
@@ -78,12 +80,12 @@ class ViewCard extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
                         stops: [waterValueConvert(watervalue), waterValueConvert(watervalue)],
                         colors: [
-                          Colors.white,
                           Colors.blue.shade300,
+                          Colors.white,
                         ],
                       ),
                       border: Border.all(
@@ -147,15 +149,23 @@ class ViewCard extends StatelessWidget {
                     child: Container(
                       width: 70,
                       height: 50,
-                      margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      margin: EdgeInsets.fromLTRB(20, 2.5, 0, 2.5),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             width: 1,
                             color: Colors.black
                         ),
                         color:
                         barriervalue == "0" ? Colors.blue : Colors.red,
+                      ),
+                      child: Text(
+                          barriervalue == "0" ? "OFF" : "ON",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   )

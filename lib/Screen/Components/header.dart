@@ -15,7 +15,7 @@ class _HeaderState extends State<Header> {
     return Row(
       children: [
         Expanded(
-          flex: 1,
+          flex: 5,
           child: Container(
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.fromLTRB(0, 6, 0, 4),
@@ -39,6 +39,7 @@ class _HeaderState extends State<Header> {
           ),
         ),
         Expanded(
+          flex: 5,
           child: Container(
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.fromLTRB(20, 12, 0, 8),
@@ -67,6 +68,12 @@ class _HeaderState extends State<Header> {
             ),
           ),
         ),
+        Expanded(
+            flex: 1,
+            child:
+            Container(
+              child: Image.asset("assets/images/kbulogo.png", height: 70,),
+            )),
       ],
     );
   }
