@@ -424,7 +424,7 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${15-_parseDouble(_devicedataList1[index]["water_value"].toStringAsFixed(1))}",
+                                                    "${(15 - _parseDouble(_devicedataList1[index]["water_value"])).toStringAsFixed(1)}",
                                                       textAlign:
                                                           TextAlign.center, style: TextStyle(fontSize: 18),),
                                                 ),
