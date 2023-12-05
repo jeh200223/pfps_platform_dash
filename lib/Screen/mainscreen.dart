@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:pfps_platform/Constants/responsive.dart';
+// ignore: unused_import
 import 'package:pfps_platform/Model/basic_model.dart';
 import 'package:pfps_platform/Screen/Components/header.dart';
 import 'package:pfps_platform/Screen/Components/view_card.dart';
@@ -49,9 +51,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool tablet = Responsive.isTablet(context);
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 90,
+        toolbarHeight: tablet ? 50 : 90,
         centerTitle: false,
         title: const Header(),
         backgroundColor: Colors.transparent,
@@ -75,12 +78,13 @@ class _MainScreenState extends State<MainScreen> {
                       children: [
                         for (int i = 0; i < _devicedataList1.length; i++)
                           SizedBox(
-                            width: 180,
+                            width: tablet ? 100 : 180,
                             child: ViewCard(
                               deviceid: "${_devicedataList1[i]["device_id"]}",
                               address: "${_devicedataList1[i]["address"]}",
-                              watervalue: 15-_parseDouble(
-                                  _devicedataList1[i]["water_value"]),
+                              watervalue: 15 -
+                                  _parseDouble(
+                                      _devicedataList1[i]["water_value"]),
                               barriervalue:
                                   "${_devicedataList1[i]["barrier_value"]}",
                             ),
@@ -124,10 +128,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D001",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -139,10 +147,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D002",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -154,10 +166,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D003",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -169,10 +185,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D004",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -184,10 +204,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D005",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -199,10 +223,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D006",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -214,10 +242,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D007",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -229,10 +261,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D008",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -244,10 +280,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D009",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -259,10 +299,14 @@ class _MainScreenState extends State<MainScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                Icon(Icons.location_on, size: 30, color: Colors.blue),
+                                Icon(Icons.location_on,
+                                    size: 30, color: Colors.blue),
                                 Text(
                                   "D010",
-                                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -297,7 +341,6 @@ class _MainScreenState extends State<MainScreen> {
                                     '관리번호',
                                     style: listViewTitleStyle(),
                                     textAlign: TextAlign.center,
-
                                   ),
                                 ),
                               ),
@@ -398,9 +441,11 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["device_id"]}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    "${_devicedataList1[index]["device_id"]}",
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -411,9 +456,11 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["address"]}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    "${_devicedataList1[index]["address"]}",
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -425,8 +472,10 @@ class _MainScreenState extends State<MainScreen> {
                                                   ),
                                                   child: Text(
                                                     "${(15 - _parseDouble(_devicedataList1[index]["water_value"])).toStringAsFixed(1)}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -437,9 +486,11 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["temp_value"]}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    "${_devicedataList1[index]["temp_value"]}",
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -450,9 +501,11 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["humi_value"]}",
-                                                      textAlign:
-                                                          TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    "${_devicedataList1[index]["humi_value"]}",
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -463,10 +516,31 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      _parseDouble(_devicedataList1[index]["water_value"]) > 15.0 ? "평시" :
-                                                      _parseDouble(_devicedataList1[index]["water_value"]) <= 15.0 && _parseDouble(_devicedataList1[index]["water_value"]) > 10.0 ? "주의" :
-                                                      _parseDouble(_devicedataList1[index]["water_value"]) <= 10.0 && _parseDouble(_devicedataList1[index]["water_value"]) >= 0.0 ? "비상" : "오류",
-                                                      textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
+                                                    _parseDouble(_devicedataList1[
+                                                                    index][
+                                                                "water_value"]) >
+                                                            15.0
+                                                        ? "평시"
+                                                        : _parseDouble(_devicedataList1[index][
+                                                                        "water_value"]) <=
+                                                                    15.0 &&
+                                                                _parseDouble(
+                                                                        _devicedataList1[index]
+                                                                            [
+                                                                            "water_value"]) >
+                                                                    10.0
+                                                            ? "주의"
+                                                            : _parseDouble(_devicedataList1[index]["water_value"]) <=
+                                                                        10.0 &&
+                                                                    _parseDouble(
+                                                                            _devicedataList1[index]["water_value"]) >=
+                                                                        0.0
+                                                                ? "비상"
+                                                                : "오류",
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(
@@ -477,12 +551,18 @@ class _MainScreenState extends State<MainScreen> {
                                                             width: 1)),
                                                   ),
                                                   child: Text(
-                                                      "${_devicedataList1[index]["barrier_value"] == "0" ? "OFF" : "ON"}",
-                                                      textAlign: TextAlign.center,
+                                                    "${_devicedataList1[index]["barrier_value"] == "0" ? "OFF" : "ON"}",
+                                                    textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      color: _devicedataList1[index]["barrier_value"] == "0" ? Colors.blue : Colors.red,
-                                                      fontSize: 18,
-                                                      fontWeight: FontWeight.bold),
+                                                        color: _devicedataList1[
+                                                                        index][
+                                                                    "barrier_value"] ==
+                                                                "0"
+                                                            ? Colors.blue
+                                                            : Colors.red,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
                                                 ),
                                               ),

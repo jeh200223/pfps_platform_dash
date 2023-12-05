@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pfps_platform/Constants/responsive.dart';
 import 'package:pfps_platform/Service/network.dart';
 
 class ViewCard extends StatelessWidget {
@@ -18,6 +19,7 @@ class ViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Insert networking = Insert();
+    bool tablet = Responsive.isTablet(context);
     return Card(
       color: Color(0XFFFAFAFA),
       shape: Border.all(width: 1),
@@ -39,7 +41,7 @@ class ViewCard extends StatelessWidget {
                             alignment: Alignment.topCenter,
                             child: Text(
                               "$deviceid",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: tablet ? 12 : 24),
                             ),
                           ),
                         ),
@@ -52,7 +54,7 @@ class ViewCard extends StatelessWidget {
                               "${watervalue.toStringAsFixed(1)} Cm",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 22,
+                                fontSize: tablet ? 11 : 22,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -75,14 +77,18 @@ class ViewCard extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 80,
-                  padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                  width: tablet ? 50 : 80,
+                  padding: EdgeInsets.fromLTRB(
+                      tablet ? 10 : 0, tablet ? 3 : 5, tablet ? 5 : 20, 0),
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        stops: [waterValueConvert(watervalue), waterValueConvert(watervalue)],
+                        stops: [
+                          waterValueConvert(watervalue),
+                          waterValueConvert(watervalue)
+                        ],
                         colors: [
                           Colors.blue.shade300,
                           Colors.white,
@@ -100,16 +106,15 @@ class ViewCard extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, tablet ? 5 : 10, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   OutlinedButton(
-                    child: Text("경고",
+                    child: Text(
+                      "경고",
                       style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black
-                      ),
+                          fontSize: tablet ? 15 : 20, color: Colors.black),
                     ),
                     onPressed: () {
                       networking.updateWarning("$deviceid").then((success) {
@@ -134,10 +139,7 @@ class ViewCard extends StatelessWidget {
                     },
                     style: ButtonStyle(
                       side: MaterialStateProperty.all(
-                          BorderSide(
-                              width: 1,
-                              color: Colors.black)
-                      ),
+                          BorderSide(width: 1, color: Colors.black)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -147,24 +149,25 @@ class ViewCard extends StatelessWidget {
                   ),
                   SizedBox(
                     child: Container(
-                      width: 70,
-                      height: 50,
-                      margin: EdgeInsets.fromLTRB(20, 2.5, 0, 2.5),
+                      width: tablet ? 20 : 70,
+                      height: tablet ? 25 : 50,
+                      margin: EdgeInsets.fromLTRB(
+                          tablet ? 5 : 20,
+                          tablet ? 1.2 : 2.5,
+                          tablet ? 5 : 0,
+                          tablet ? 1.2 : 2.5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            width: 1,
-                            color: Colors.black
-                        ),
-                        color:
-                        barriervalue == "0" ? Colors.blue : Colors.red,
+                        border: Border.all(width: 1, color: Colors.black),
+                        color: barriervalue == "0" ? Colors.blue : Colors.red,
                       ),
                       child: Text(
-                          barriervalue == "0" ? "OFF" : "ON",
+                        barriervalue == "0" ? "OFF" : "ON",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          height: tablet ? 1.7 : 1.3,
+                          fontSize: tablet ? 10 : 20,
                         ),
                       ),
                     ),
@@ -189,8 +192,8 @@ class ViewCard extends StatelessWidget {
 
 // 퍼센트 값을 최소 값과 최대 값 사이로 변환
     double animatedHeight = (maxValue - minValue) *
-        (percentage - minPercentage) /
-        (maxPercentage - minPercentage) +
+            (percentage - minPercentage) /
+            (maxPercentage - minPercentage) +
         minValue;
     print(animatedHeight);
     return animatedHeight;

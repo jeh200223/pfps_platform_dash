@@ -5,7 +5,7 @@ import 'package:html/parser.dart' as html;
 class NetworkSendData {
   Future<List<Map<String, dynamic>>> getAllData() async {
     final response = await http.get(
-        Uri.parse('http://capstone.dothome.co.kr/sensor/wemos_app.php?mode=select'));
+        Uri.parse('http://192.168.0.52/sensor/wemos_app.php?mode=select'));
 
     if (response.statusCode == 200) {
       try {
@@ -31,7 +31,7 @@ class Insert {
   Future<dynamic> insertData(String manual, String barrierControl) async {
     // URL 변경
     final Uri uri = Uri.parse(
-        'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=insert&manual=$manual&barrier_control=$barrierControl');
+        'http://192.168.0.52/sensor/app_wemos.php?mode=insert&manual=$manual&barrier_control=$barrierControl');
 
     final response = await http.post(
       uri,
@@ -54,10 +54,9 @@ class Insert {
   }
   Future<bool> updateWarning(String device_id) async {
     final Uri uri = Uri.parse(
-      'http://capstone.dothome.co.kr/sensor/app_wemos.php?mode=warning&device_id=$device_id',
+      'http://192.168.0.52/sensor/app_wemos.php?mode=warning&device_id=$device_id',
     );
 
-    print(uri);
     final Map<String, dynamic> data = {
       'device_id': device_id,
     };
