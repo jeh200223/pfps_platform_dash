@@ -1,6 +1,6 @@
 # pfps_platform
 
-A new Flutter project.
+경복대학교 캡스톤 경진대회 프로젝트인 수해재난 방지 플랫폼입니다.
 
 ## Getting Started
 
